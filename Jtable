@@ -1,0 +1,36 @@
+	public void preencherTabelaperiferico(String SQL){
+	ArrayList dados = new ArrayList();
+	String [] colunas = new String[]{"ID","NOME","FABRICANTE","CODIGO DE BARRA","DATA CADASTRO","MODELO","Nº SERIE"};
+	conexao.execultaSQL(SQL);
+	try{
+		conexao.rs.first();
+		do{
+			
+		dados.add(new Object[]{conexao.rs.getInt("id_periferico"),conexao.rs.getString("nome_periferico"),conexao.rs.getString("nome_fabricante"),conexao.rs.getString("codigo_barra"),conexao.rs.getString("data_periferico"),conexao.rs.getString("modelo_periferico"),conexao.rs.getString("numero_serie")});
+		}while(conexao.rs.next());
+	}catch (Exception e) {
+		JOptionPane.showMessageDialog(null, "Erro ao preencher tabela!"+e.getMessage());
+	}
+	ModeloTabela modelo = new ModeloTabela(dados, colunas);
+	tabelaperiferico.setModel(modelo);
+	tabelaperiferico.getColumnModel().getColumn(0).setPreferredWidth(80);
+	tabelaperiferico.getColumnModel().getColumn(0).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(1).setPreferredWidth(80);
+	tabelaperiferico.getColumnModel().getColumn(1).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(2).setPreferredWidth(90);
+	tabelaperiferico.getColumnModel().getColumn(2).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(3).setPreferredWidth(80);
+	tabelaperiferico.getColumnModel().getColumn(3).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(4).setPreferredWidth(90);
+	tabelaperiferico.getColumnModel().getColumn(4).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(5).setPreferredWidth(190);
+	tabelaperiferico.getColumnModel().getColumn(5).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(6).setPreferredWidth(90);
+	tabelaperiferico.getColumnModel().getColumn(6).setResizable(false);
+	tabelaperiferico.getColumnModel().getColumn(7).setPreferredWidth(90);
+	tabelaperiferico.getColumnModel().getColumn(7).setResizable(false);
+	tabelaperiferico.getTableHeader().setReorderingAllowed(false);
+	tabelaperiferico.setAutoResizeMode(tabelaperiferico.AUTO_RESIZE_OFF);
+	tabelaperiferico.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	
+	}
